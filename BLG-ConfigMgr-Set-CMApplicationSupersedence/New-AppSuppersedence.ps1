@@ -11,20 +11,19 @@ Function New-AppSuppersedence{
     .SYNOPSIS
         
     .DESCRIPTION
-        
+        Adds supersedence to an configuration mananger application object
 
     .PARAMETER Appname
-        Name of the application (LocalizedDisplayName, ApplicationName
-    
+	    Name of the application (LocalizedDisplayName, ApplicationName
 
     .PARAMETER Supersedences
 		Pass a list of Application (string:LocalizedDisplayName, ApplicationName) of the suppersedence to be added
 	
 	.PARAMETER IsAutoUninstallSup
-        Set this parameter to true to uninstall the superseded application. Default is true
+    	Set this parameter to true to uninstall the superseded application. Default is true
 
     .EXAMPLE
-        [System.Collections.ArrayList]$Supersedences=New-Object -TypeName System.Collections.ArrayList
+    	[System.Collections.ArrayList]$Supersedences=New-Object -TypeName System.Collections.ArrayList
 		$Supersedences.Add("Taxware_2-40-89_x64_001") | Out-Null
 		$Supersedences.Add("Taxware_2-42-6_x64_001") | Out-Null
 
