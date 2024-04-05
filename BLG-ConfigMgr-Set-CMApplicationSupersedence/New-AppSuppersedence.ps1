@@ -53,28 +53,25 @@ Function New-AppSuppersedence{
 	
     Begin {
         $ErrorActionPreference = "Stop"
-		
     }
 	
     Process {    
-             
-
 		try{
 			foreach($Supersedence in $Supersedences){
 				
-                # Get application
+				# Get application
 				$newapp=Get-CMApplication -Name $Appname
 				Write-Host "Successfully fetched Application with ID $($newapp.CI_ID)"
 
 				# Get corresponding Deployment Type
-                $DT=Get-CMDeploymentType -ApplicationName $Appname
-	            Write-Host "Successfully fetched DT with ID $($DT.CI_ID)"
+				$DT=Get-CMDeploymentType -ApplicationName $Appname
+				Write-Host "Successfully fetched DT with ID $($DT.CI_ID)"
 
-                # Get superseded ap
+				# Get superseded ap
 				$AppSuperseded=Get-CMApplication -Name $Supersedence
 				Write-Host "Successfully fetched superseded Application with ID $($($AppSuperseded.CI_ID))"
 				
-                # Get superseded dt
+				# Get superseded dt
 				$DTSuperseded=Get-CMDeploymentType -ApplicationName $Supersedence
 				Write-Host "Successfully fetched Deployment Type for Supersededed App $Supersedence with ID $($($DTSuperseded.CI_ID))"
 				
@@ -87,14 +84,12 @@ Function New-AppSuppersedence{
 				#Fire
 				Set-CMApplicationSupersedence -ApplicationId ($newapp.CI_ID) -CurrentDeploymentTypeId $($DT.CI_ID) -SupersededApplicationId $($AppSuperseded.CI_ID) -OldDeploymentTypeId $($DTSuperseded.CI_ID) -IsUninstall $IsAutoUninstallSup
 				Write-Host "Successfully Added Supersedence $Supersedence)"
-
 			}
 		}
-		catch
-			{
-				Write-Error "Error adding supersedence: $Error[0].Exception.Message"
-				return
-			}
+		catch{
+			Write-Error "Error adding supersedence: $Error[0].Exception.Message"
+			return
+		}
 	}
 	End {
 
