@@ -59,7 +59,7 @@ Function New-AppSuppersedence{
 			foreach($Supersedence in $Supersedences){
 				
 				# Get application
-				$newapp=Get-CMApplication -Name $Appname
+				$newapp=Get-CMApplication -Name $Appname #you might use param -fast to skip lazy properties and speed  up things 
 				Write-Host "Successfully fetched Application with ID $($newapp.CI_ID)"
 
 				# Get corresponding Deployment Type
